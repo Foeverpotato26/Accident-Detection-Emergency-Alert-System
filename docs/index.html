@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accident Alert System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Accident Alert System</h1>
+  <p>ESP32 | GPS | MPU6050 | Firebase</p>
+</header>
+
+<main>
+
+  <div id="dashboard" class="hidden">
+
+    <section class="card center" id="statusCard">
+      <h2>System Status</h2>
+      <div id="status" class="status">Connecting...</div>
+      <p id="alertType" class="muted">Waiting for Firebase data...</p>
+      <div class="indicators">
+        <span id="indNormal" class="ind">Normal</span>
+        <span id="indAccident" class="ind">Possible accident</span>
+        <span id="indSos" class="ind">Manual SOS</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card"><h3>Acceleration</h3><div id="acceleration" class="value">--</div><p class="muted">m/s²</p></div>
+      <div class="card"><h3>Rotation (gyroscope)</h3><div id="rotation" class="value">--</div><p class="muted">degrees/second</p></div>
+      <div class="card"><h3>Temperature</h3><div id="temperature" class="value">--</div><p class="muted">°C (sensor)</p></div>
+      <div class="card"><h3>GPS Status</h3><div id="gpsStatus" class="value">--</div></div>
+      <div class="card"><h3>Satellites</h3><div id="satellites" class="value">--</div></div>
+      <div class="card"><h3>Device uptime</h3><div id="uptime" class="value">--</div></div>
+    </section>
+
+    <section class="card center">
+      <h2>GPS Location</h2>
+      <div class="grid two">
+        <div><h3>Latitude</h3><div id="latitude" class="value">--</div></div>
+        <div><h3>Longitude</h3><div id="longitude" class="value">--</div></div>
+      </div>
+      <p id="locationMessage" class="muted">Waiting for GPS coordinates...</p>
+      <button id="mapButton" type="button" disabled>Open Location on Google Maps</button>
+    </section>
+
+    <section class="card">
+      <h2>Alert History</h2>
+      <p id="historyEmpty" class="muted">No alerts recorded.</p>
+      <div class="table-wrap">
+        <table id="historyTable" class="hidden">
+          <thead><tr><th>Time</th><th>Type</th><th>Accel (m/s²)</th><th>Rot (°/s)</th><th>Location</th></tr></thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="message">
+      <strong>Last data from device:</strong> <span id="lastUpdate">Not updated</span><br><br>
+      <strong>Device:</strong> <span id="device">Unknown</span><br><br>
+      <strong>Connection:</strong> <span id="connection">Connecting to Firebase...</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>Educational prototype — not a certified emergency system.</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
